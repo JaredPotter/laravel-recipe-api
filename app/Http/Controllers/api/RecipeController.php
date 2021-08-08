@@ -132,13 +132,25 @@ class RecipeController extends BaseController
     public function show($id)
     {
         error_log('REQUEST W/ ID: ' . $id);
-        $recipe = Recipe::find($id);
+
+        $recipe = '';
+
+        try {
+            $recipe = Recipe::find($id);
+        } catch (Throwable $e) {
+            // do nothing
+            error_log('ERROR: ' . $e);
+            return $this->sendError($e);
+        }
+
 
         if (is_null($recipe)) {
             return $this->sendError("Recipe not found");
         }
 
-        return response(new RecipeResource($recipe), 200);
+
+        return response()->json($recipe, 200);
+        // return response(new RecipeResource($recipe), 200);
         // return $this->sendResponse(new RecipeResource($recipe), 'Recipe retrieved successfully.');
     }
 
