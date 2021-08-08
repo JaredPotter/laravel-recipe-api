@@ -24,6 +24,17 @@ class RecipeController extends BaseController
     public function index(Request $request)
     {
         $input = $request->input();
+
+        try {
+            $searchQuery = $input['query'];
+
+            $recipes = Recipe::search($searchQuery)->get();
+
+            return response()->json($recipes);
+        } catch (Throwable $e) {
+            // do nothing
+        }
+
         $recipeQuery = Recipe::query();
 
         try {
