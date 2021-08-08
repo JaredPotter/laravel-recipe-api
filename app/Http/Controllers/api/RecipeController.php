@@ -131,6 +131,7 @@ class RecipeController extends BaseController
      */
     public function show($id)
     {
+        error_log('REQUEST W/ ID: ' . $id);
         $recipe = Recipe::find($id);
 
         if (is_null($recipe)) {
