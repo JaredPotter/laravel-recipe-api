@@ -141,7 +141,7 @@ class RecipeController extends BaseController
             return $this->sendError("Recipe not found");
         }
 
-        return response(new RecipeResource($recipe), 200);
+        return response()->json($recipe);
     }
 
     /**
