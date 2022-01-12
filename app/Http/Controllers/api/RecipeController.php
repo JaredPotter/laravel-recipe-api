@@ -109,7 +109,6 @@ class RecipeController extends BaseController
 
             $recipe_id = $recipe['id'];
 
-
             DB::table('recipe_tag')->insert([
                 'recipe_id' => $recipe_id,
                 'tag_id' => $tag_id,
