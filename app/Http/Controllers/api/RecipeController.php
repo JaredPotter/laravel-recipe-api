@@ -90,10 +90,6 @@ class RecipeController extends BaseController
         $input['publish_date'] = Carbon::parse($input['publish_date'])->format('Y-m-d');
         $recipe = Recipe::create($input);
 
-        // foreach ($input as $i) {
-        //     error_log('input value: ' . $i . '\n');
-        // }
-
         // Handle Tags
         $tags = $input['tags'];
 
@@ -120,7 +116,7 @@ class RecipeController extends BaseController
             ]);
         }
 
-        return response(new RecipeResource($recipe), 201);
+        return response()->json($recipe);
     }
 
     /**
@@ -131,8 +127,6 @@ class RecipeController extends BaseController
      */
     public function show($id)
     {
-        error_log('REQUEST W/ ID: ' . $id);
-
         $recipe = '';
 
         try {
@@ -148,10 +142,7 @@ class RecipeController extends BaseController
             return $this->sendError("Recipe not found");
         }
 
-
-        return response()->json($recipe, 200);
-        // return response(new RecipeResource($recipe), 200);
-        // return $this->sendResponse(new RecipeResource($recipe), 'Recipe retrieved successfully.');
+        return response(new RecipeResource($recipe), 200);
     }
 
     /**
@@ -195,7 +186,6 @@ class RecipeController extends BaseController
     {
         $recipe->delete();
 
-        // return $this->sendResponse([], 'Recipe deleted successfully.');
         return response('', 200);
     }
 }

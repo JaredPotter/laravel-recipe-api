@@ -27,7 +27,9 @@ class Recipe extends JsonResource
             'instructions' => $this->instructions,
             'imageUrl' => $this->imageUrl,
             'publish_date' => $this->publish_date,
-            'is_published' => $this->is_published
+            'is_published' => $this->is_published,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

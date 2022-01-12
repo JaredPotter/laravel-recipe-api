@@ -10,6 +10,7 @@ class TagResource extends JsonResource
     {
         $return = parent::toArray($request);
         $return['type'] = 'tag';
+
         return $return;
     }
 }

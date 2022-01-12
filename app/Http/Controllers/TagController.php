@@ -36,6 +36,7 @@ class TagController extends Controller
     {
         $query = UhinApi::getQueryBuilder(Tag::class);
         $query = UhinApi::parseFields($query, $request);
+
         return new TagResource($query->findOrFail($tagId));
     }
 
@@ -59,6 +60,7 @@ class TagController extends Controller
 
         $tag = Tag::findOrFail($tag->id);
         $resource = new TagResource($tag);
+
         return $resource->response()->setStatusCode(201);
     }
 
@@ -73,6 +75,7 @@ class TagController extends Controller
     {
         $tag = UhinApi::fillModel($tag, $request);
         $tag->save();
+
         return new TagResource($tag);
     }
 
